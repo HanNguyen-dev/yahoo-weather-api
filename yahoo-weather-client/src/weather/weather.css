@@ -1,0 +1,13 @@
+.weather-container {
+    background-color: #282c34;
+    color: white;
+    display: grid;
+    margin-right: 20%;
+    margin-left: 20%;
+    grid-template-columns: 1fr 2fr;
+}
+
+#current {
+    text-align: left;
+    font-size: calc(10px + 2vmin);
+}
