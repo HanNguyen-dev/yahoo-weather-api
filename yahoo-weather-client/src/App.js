@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import City from './city/city';
 import Weather from './weather/weather'
-import logo from './logo.svg';
 import axios from 'axios';
 import { OAuth } from 'oauth';
 import './App.css';
@@ -43,26 +42,25 @@ class App extends Component {
                     console.error(err);
                 } else {
                     this.setState( { forecast: JSON.parse(data) });
+                    console.log(data);
                 }
             }
         );
 
     }
-    requestAPI() {
-        const authorization = null;
-        const config = {
-            url: '/forecastrss',
-            method: 'get',
-            baseURL: 'https://weather-ydn-yql.media.yahoo.com/',
-            headers: {
-                "Authorization": authorization
+    requestAPI(city) {
+        const URL = this.baseURL + '?city=' + encodeURIComponent(city);
 
-            }
+        axios.get(URL).then(
+                (response) => {
+                    console.log(response);
+                    this.setState( { forecast: response.data })
+                })
+            .catch(
+                (err) => {
+                    console.error(err);
+                });
         }
-        axios.get('http://localhost:3000').then(
-            (response) => console.log(response)
-        );
-    }
 
     updateCity(city) {
         this.setState( { city: city } );

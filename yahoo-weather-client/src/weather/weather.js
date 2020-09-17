@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Forecast from './forecast/forecast';
 import './weather.css';
 
 class Weather extends Component {
@@ -16,9 +17,10 @@ class Weather extends Component {
         }
     }
 
-
     render() {
         let locationBox = '';
+        let forecasts = '';
+
         if (this.state.forecast) {
             locationBox = <div id="current">
                             <h1>
@@ -28,14 +30,13 @@ class Weather extends Component {
                             Wind Speed: { this.state.forecast.current_observation.wind.speed }<br/>
                             Humidity: { this.state.forecast.current_observation.atmosphere.humidity }<br/>
                             Pressure: { this.state.forecast.current_observation.atmosphere.pressure }<br/>
-
-
                           </div>
+            forecasts = this.state.forecast.forecasts;
         }
         return (
             <div class="weather-container">
                 { locationBox }
-                <div></div>
+                <Forecast forecasts={ forecasts }></Forecast>
             </div>
         );
     }
