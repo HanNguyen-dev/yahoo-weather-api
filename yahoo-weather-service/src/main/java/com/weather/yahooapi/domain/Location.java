@@ -14,7 +14,7 @@ public class Location {
     public String region;
     public Integer woeid;
     public String country;
-    public long lat;
-    public long Long;
+    public Double lat;
+    public Double Long;
     public String timezone_id;
 }

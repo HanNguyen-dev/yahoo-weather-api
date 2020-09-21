@@ -32,8 +32,8 @@ public class CurrentObservation {
     @NoArgsConstructor
     public static class Atmosphere {
         public Integer humidity;
-        public Long visibility;
-        public Long pressure;
+        public Double visibility;
+        public Double pressure;
         public Integer rising;
     }
 
