@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.weather.yahooapi.error.CityNotFoundException;
 
 
 @RestController
@@ -22,7 +23,13 @@ public class WeatherController {
 
     @GetMapping("/weather")
     public ResponseEntity<CityForecasts> getForecasts(@RequestParam(value = "city", required = true) String city) {
-        return new ResponseEntity<>(weatherService.getTheWeather(city), HttpStatus.OK);
+        CityForecasts cityForecasts = weatherService.getTheWeather(city);
+        if (cityForecasts == null || cityForecasts.location.city == null) {
+            throw new CityNotFoundException();
+        }
+        ResponseEntity<CityForecasts> responseCityForecasts = new ResponseEntity<>(cityForecasts, HttpStatus.OK);
+
+        return responseCityForecasts;
     }
 
 }

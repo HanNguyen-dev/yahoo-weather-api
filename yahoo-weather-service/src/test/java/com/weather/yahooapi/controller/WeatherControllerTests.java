@@ -48,6 +48,15 @@ public class WeatherControllerTests {
 
     @Test
 	public void invalidRequestCityNotFound() throws Exception {
+        Location location = new Location();
+        CityForecasts cityForecasts = CityForecasts.builder()
+                                                   .location(location).build();
+
+        when(weatherServiceMock.getTheWeather("capehope")).thenReturn(cityForecasts);
+
+		mockMvc.perform(get("/weather?city=capehope")
+			.accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
 	}
 
     public CityForecasts generateForecasts() {
