@@ -4,6 +4,7 @@ os: linux
 dist: bionic
 jdk:
   - oraclejdk11
+
 script:
   - cd yahoo-weather-service
-  - gradle clean build
+  - ./gradlew clean build
