@@ -1,4 +1,7 @@
 language: java
+
+os: linux
+dist: bionic
 jdk:
   - oraclejdk11
 script:
