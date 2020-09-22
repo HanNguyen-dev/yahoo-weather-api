@@ -3,4 +3,4 @@ jdk:
   - oraclejdk11
 script:
   - cd yahoo-weather-service
-  - ./gradlew clean build
+  - gradle clean build
