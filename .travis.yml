@@ -5,6 +5,13 @@ dist: bionic
 jdk:
   - oraclejdk11
 
-script:
-  - cd yahoo-weather-service
-  - gradle clean build
+jobs:
+  include:
+      - stage: compile
+        script:
+          - cd yahoo-weather-service
+          - gradle clean build
+      - stage: test
+        script:
+          - cd yahoo-weather-service
+          - gradle test
