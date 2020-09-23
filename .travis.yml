@@ -15,3 +15,10 @@ jobs:
         script:
           - cd yahoo-weather-service
           - gradle test
+
+      - stage: deploy to staging
+        script: skip
+        deploy: &heroku
+          provider: heroku
+          app: sf-stages-staging
+          api_key: $HEROKU_AUTH_TOKEN
