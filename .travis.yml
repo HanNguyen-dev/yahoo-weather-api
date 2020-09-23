@@ -17,7 +17,8 @@ jobs:
           - gradle test
 
       - stage: deploy to staging
-        script: skip
+        script:
+          - cd yahoo-weather-service
         deploy: &heroku
           provider: heroku
           app: sf-stages-staging
