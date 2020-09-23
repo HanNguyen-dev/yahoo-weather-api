@@ -21,5 +21,5 @@ jobs:
           - cd yahoo-weather-service
         deploy: &heroku
           provider: heroku
-          app: sf-stages-staging
+          app: yi-test-service
           api_key: $HEROKU_AUTH_TOKEN
