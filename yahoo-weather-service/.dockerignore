@@ -1,0 +1,16 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+src/main/resources/application-local.properties
+keystore.p12
+
+### VS Code ###
+.vscode/
+
+# additional
+.dockerignore
+.gitignore
+Dockerfile

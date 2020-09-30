@@ -9,21 +9,27 @@ dist: bionic
 jdk:
   - openjdk8
 
+services: docker
+
 jobs:
   include:
-      - stage: compile
-        script:
-          - cd yahoo-weather-service
-          - gradle clean build
-      - stage: test
-        script:
-          - cd yahoo-weather-service
-          - gradle test
-
-      - stage: deploy to staging
-        script:
-          - cd yahoo-weather-service
-        deploy: &heroku
-          provider: heroku
-          app: yi-test-service
-          api_key: $HEROKU_AUTH_TOKEN
+    - stage: compile
+      script:
+        - cd yahoo-weather-service
+        - gradle clean build
+    - stage: test
+      script:
+        - cd yahoo-weather-service
+        - gradle test
+    - stage: pack
+      script:
+        - cd .docker
+        - docker build -f client.dockerfile -t $DOCKER_NAME/$CLIENT_APP/web --build-arg URL=$SERVICE_URL .
+        - docker build -f service.dockerfile -t $DOCKER_NAME/$SERVICE_APP/web .
+    - stage: deploy to staging
+      script:
+        - cd yahoo-weather-service
+      deploy: &heroku
+        provider: heroku
+        app: yi-test-service
+        api_key: $HEROKU_AUTH_TOKEN
