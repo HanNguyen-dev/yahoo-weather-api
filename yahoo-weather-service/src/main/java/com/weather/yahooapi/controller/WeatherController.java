@@ -14,7 +14,7 @@ import com.weather.yahooapi.error.CityNotFoundException;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://evening-taiga-64766.herokuapp.com/")
 public class WeatherController {
     @Autowired
     private WeatherService weatherService;
