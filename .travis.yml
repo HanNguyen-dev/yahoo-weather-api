@@ -26,6 +26,8 @@ jobs:
         - cd .docker
         - docker build -f client.dockerfile -t $DOCKER_NAME/$CLIENT_APP/web --build-arg URL=$SERVICE_URL .
         - docker build -f service.dockerfile -t $DOCKER_NAME/$SERVICE_APP/web .
+        - echo "$DOCKER_PASSWORD" | docker login -u _ --password-stdin $DOCKER_NAME
+        - docker push $DOCKER_NAME/$CLIENT_APP/web
     - stage: deploy to staging
       script:
         - cd yahoo-weather-service
