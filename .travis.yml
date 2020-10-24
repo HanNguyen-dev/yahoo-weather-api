@@ -1,6 +1,7 @@
 branches:
   only:
     - master
+    - docker_branch
 
 language: java
 
